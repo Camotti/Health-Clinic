@@ -17,4 +17,22 @@ public class PatientService
         Console.WriteLine("Patient registered sucessfully. ");
 
     }
+
+    public void ListPatients(List<Patient> patients)
+    {
+        if (patients.Count == 0)
+        {
+            Console.WriteLine("There isn't patients registered.");
+            return;
+        }
+    
+        foreach(var patient in patients)
+        {
+        Console.WriteLine($"Name: {patient.Name} , Age: {patient.Age} , Symptom: {patient.Symptom} ");
+        }
+    }
+    
+    
+
+
 }
