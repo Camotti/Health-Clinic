@@ -1,0 +1,14 @@
+C:\Users\ASUS X512F\healthclinic\bin\Debug\net8.0\healthclinic.exe
+C:\Users\ASUS X512F\healthclinic\bin\Debug\net8.0\healthclinic.deps.json
+C:\Users\ASUS X512F\healthclinic\bin\Debug\net8.0\healthclinic.runtimeconfig.json
+C:\Users\ASUS X512F\healthclinic\bin\Debug\net8.0\healthclinic.dll
+C:\Users\ASUS X512F\healthclinic\bin\Debug\net8.0\healthclinic.pdb
+C:\Users\ASUS X512F\healthclinic\obj\Debug\net8.0\healthclinic.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ASUS X512F\healthclinic\obj\Debug\net8.0\healthclinic.AssemblyInfoInputs.cache
+C:\Users\ASUS X512F\healthclinic\obj\Debug\net8.0\healthclinic.AssemblyInfo.cs
+C:\Users\ASUS X512F\healthclinic\obj\Debug\net8.0\healthclinic.csproj.CoreCompileInputs.cache
+C:\Users\ASUS X512F\healthclinic\obj\Debug\net8.0\healthclinic.dll
+C:\Users\ASUS X512F\healthclinic\obj\Debug\net8.0\refint\healthclinic.dll
+C:\Users\ASUS X512F\healthclinic\obj\Debug\net8.0\healthclinic.pdb
+C:\Users\ASUS X512F\healthclinic\obj\Debug\net8.0\healthclinic.genruntimeconfig.cache
+C:\Users\ASUS X512F\healthclinic\obj\Debug\net8.0\ref\healthclinic.dll
