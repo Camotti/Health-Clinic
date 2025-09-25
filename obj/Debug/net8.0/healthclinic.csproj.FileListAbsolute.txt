@@ -12,3 +12,4 @@ C:\Users\ASUS X512F\healthclinic\obj\Debug\net8.0\refint\healthclinic.dll
 C:\Users\ASUS X512F\healthclinic\obj\Debug\net8.0\healthclinic.pdb
 C:\Users\ASUS X512F\healthclinic\obj\Debug\net8.0\healthclinic.genruntimeconfig.cache
 C:\Users\ASUS X512F\healthclinic\obj\Debug\net8.0\ref\healthclinic.dll
+C:\Users\ASUS X512F\healthclinic\obj\Debug\net8.0\healthclinic.sourcelink.json

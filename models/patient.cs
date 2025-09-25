@@ -7,6 +7,9 @@ public class Patient // se crea la clase con sus atributos
     public byte Age { get; set; }
 
     public string? Symptom { get; set; } // aqui solo se hace la estructura del paciente 
+   
+   // relacion 1-1 para que cada paciente tenga una mascota o ninguna
+    public Pet? Pet { get; set; }
 }
 
 
