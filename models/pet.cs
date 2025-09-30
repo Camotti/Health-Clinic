@@ -1,11 +1,25 @@
+using System.Security.Cryptography.X509Certificates;
+
 namespace healthclinic.models;
 
 public class Pet
 {
-    public Guid Id { get; set; } = Guid.NewGuid(); // genera un ID unico 
-    public string? Name { get; set; }
-    public string? Specie { get; set; }
+    private Guid id = Guid.NewGuid(); // genera un ID unico 
+    private string? name;
+    private string? specie; // campos privados 
 
-    
+    public Guid Id => id;
+
+    public string? Name
+    {
+        get => name;
+        set => name = string.IsNullOrWhiteSpace(value) ? "UNKNOWN" : value; // si el nombre esta vacio o tiene espacios en blanco se asigna "UNKNOWN", si no se asigna un valor
+    }
+
+    public string? Specie
+    {
+        get => specie;
+        set => specie = string.IsNullOrWhiteSpace(value) ? "UNKNOWN" : value;
+    }
 }
 

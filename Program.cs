@@ -41,7 +41,7 @@ while (continueProgram)
             continueProgram = false;
             break;
         default:
-            Console.WriteLine("Invalid option.");
+            Console.WriteLine("Exiting Program.");
             break;
     }
 }
