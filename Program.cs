@@ -3,17 +3,17 @@ using System.Reflection.Metadata.Ecma335;
 using System.Security.Cryptography;
 using healthclinic.models;
 using healthclinic.Services;
+using healthclinic.Interfaces;
 
 
 
+List<Patient> patients = new(); // lista de pacientes en memoria
+IPatientService service = new PatientService(); // aqui se cre un objeto para usar los metodos 
 
-List<Patient> patients = new();
-var service = new PatientService(); // aqui se cre un objeto para usar los metodos 
-
-bool continueProgram = true;
+bool continueProgram = true; // variable para controlar el bucle del menu
 
 // menu principal 
-while (continueProgram)
+while (continueProgram) // mientras continueProgram sea true, el menu se seguira mostrando
 {
     Console.WriteLine("\n ----- Main Menu -----");
     Console.WriteLine("1.Register Patient");
@@ -22,7 +22,7 @@ while (continueProgram)
     Console.WriteLine("4. Exit");
     Console.WriteLine("Option: ");
 
-    string? option = Console.ReadLine();
+    string? option = Console.ReadLine(); // lee la opcion del usuario
 
     switch (option)
     {
@@ -34,7 +34,7 @@ while (continueProgram)
             break;
         case "3":
             Console.WriteLine("Enter patient name: ");
-            string? name = Console.ReadLine() ?? "";
+            string? name = Console.ReadLine() ?? ""; // si el usuario no ingresa nada, se asigna una cadena vacia
             service.SearchPatient(patients, name);
             break;
         case "4":

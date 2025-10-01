@@ -1,9 +1,10 @@
-using healthclinic.models;
-namespace healthclinic.Services;
+using healthclinic.models; // importamos el modelo
+namespace healthclinic.Services; // definimos el espacio de trabajo
 
-public class PatientService
+using healthclinic.Interfaces; // importamos la interfaz
+public class PatientService : IPatientService
 {
-    public void RegisterPatient(List<Patient> patients)
+    public void RegisterPatient(List<Patient> patients) // este metodo recibe una lista de pacientes(datos de memoria)
     {
         try
         {
@@ -85,7 +86,7 @@ public class PatientService
                 Console.WriteLine(" Pets:");
                 foreach (var pet in patient.Pets)
                 {
-                    Console.WriteLine($"   - {pet.Name} ({pet.Specie}), ID: {pet.Id}");
+                    Console.WriteLine($" The name {pet.Name} and the specie: ({pet.Specie}), ID: {pet.Id}");
                 }
             }
             else
@@ -109,7 +110,7 @@ public class PatientService
                 Console.WriteLine(" Pets:");
                 foreach (var pet in patient.Pets)
                 {
-                    Console.WriteLine($"   - {pet.Name} ({pet.Specie})");
+                    Console.WriteLine($" The {pet.Name} and the specie: ({pet.Specie})");
                 }
             }
             else

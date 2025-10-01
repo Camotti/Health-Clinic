@@ -1,6 +1,7 @@
 namespace healthclinic.models; //definimos el espacio de trabajo 
+using healthclinic.Interfaces;
 
-public class Patient // se crea la clase con sus atributos, Los campos privados van en minuscula y los publicos en mayuscula 
+public class Patient : Iregistrable  // se crea la clase con sus atributos, Los campos privados van en minuscula y los publicos en mayuscula 
 {
     private Guid id = Guid.NewGuid(); // Va a generar un id automatico 
     private string? name;
@@ -36,6 +37,12 @@ public class Patient // se crea la clase con sus atributos, Los campos privados 
     // relacion de 1 - N porque un paciente puede tener varias mascotas. 
 
     public List<Pet> Pets { get; set; } = new List<Pet>();
+
+
+    public void RegisterPatient()
+    {
+        Console.WriteLine($"The patient {Name} has been registed successfully with {Pets.Count} pets.");
+    }
 }
 
 
