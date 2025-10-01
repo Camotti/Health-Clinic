@@ -1,8 +1,9 @@
 using System.Security.Cryptography.X509Certificates;
+using healthclinic.Interfaces;
 
 namespace healthclinic.models;
 
-public class Pet : Animal
+public class Pet : Animal , Iregistrable //
 {
     // private Guid id = Guid.NewGuid(); // genera un ID unico 
     // private string? name;
