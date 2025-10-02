@@ -22,6 +22,7 @@ while (continueProgram) // mientras continueProgram sea true, el menu se seguira
     Console.WriteLine("4.General Query");
     Console.WriteLine("5.Vaccination");
     Console.WriteLine("6. Exit");
+    Console.WriteLine("7. Send Notification to a patient");
     Console.WriteLine("Option: ");
 
     string? option = Console.ReadLine(); // lee la opcion del usuario
@@ -52,6 +53,22 @@ while (continueProgram) // mientras continueProgram sea true, el menu se seguira
         case "6":
             continueProgram = false; // cambia la variable para salir del bucle
             break;
+
+        case "7":
+            
+            if (patients.Count == 0)
+            {
+                foreach (var patient in patients)
+                {
+                    patient.SendNotification("This is reminder notification for your appointment tomorrow.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("No patients no notify.");
+            }
+            break;
+            
         default:
             Console.WriteLine("Invalid option, try again.");
             break;

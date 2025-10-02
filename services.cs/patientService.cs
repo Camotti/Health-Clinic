@@ -3,6 +3,10 @@ namespace healthclinic.Services; // definimos el espacio de trabajo
 
 using healthclinic.Interfaces; // importamos la interfaz
 public class PatientService : IPatientService
+
+using healthclinic.Exceptions; // importamos la excepción personalizada
+
+
 {
     public void RegisterPatient(List<Patient> patients) // este metodo recibe una lista de pacientes(datos de memoria)
     {
@@ -98,29 +102,45 @@ public class PatientService : IPatientService
 
     public void SearchPatient(List<Patient> patients, string name)
     {
+        try {
+
+        
         var patient = patients.FirstOrDefault(patient =>
             patient.Name?.Equals(name, StringComparison.OrdinalIgnoreCase) == true);
 
-        if (patient != null)
+        if (patient == null)
         {
-            Console.WriteLine($"Patient: {patient.Name}, Age: {patient.Age}, Symptom: {patient.Symptom}");
+           Console.WriteLine($"The patient is not registered.");
+           return; // No existe el paciente
+        }
 
-            if (patient.Pets.Count > 0)
-            {
-                Console.WriteLine(" Pets:");
-                foreach (var pet in patient.Pets)
-                {
-                    Console.WriteLine($" The {pet.Name} and the specie: ({pet.Specie})");
-                }
-            }
-            else
-            {
-                Console.WriteLine(" No pets.");
-            }
-        }
-        else
+        Console.WriteLine($"The patient {patient.Name} , Age: {patient.Age}, Symptom: {patient.Symptom}");
+
+        // Mostrar mascotas si las hay
+        if (patient.Pets == null || patient.Pets.Count == 0)
         {
-            Console.WriteLine("Patient is not registered.");
+            // Lanzar excepción personalizada si no tiene mascotas, aqui se dectecta el error y se lanza la excepcion
+            throw new PwfiException($"The patient {patient.Name} doesn't have pets registered.");
         }
+        Console.WriteLine(" Pets:");
+        foreach (var pet in patient.Pets)
+        {
+            Console.WriteLine($" Pet Name: {pet.Name} Specie: {pet.Specie} ");
+        }
+     }
+        catch (PwfiException ex) // Capturar la excepción personalizada
+        {
+            Console.WriteLine(ex.Message); // Mostrar el mensaje de la excepción
+        }
+        catch (Exception ex) // Capturar cualquier otra excepción
+        {
+            Console.WriteLine($"Unexpected error: {ex.Message}"); 
+        }
+        finally
+        {
+            Console.WriteLine("Search operation finished.");
+        }
+
     }
+
 }
