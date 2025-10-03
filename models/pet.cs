@@ -5,23 +5,12 @@ namespace healthclinic.models;
 
 public class Pet : Animal , Iregistrable //
 {
-    // private Guid id = Guid.NewGuid(); // genera un ID unico 
-    // private string? name;
-    // private string? specie; // campos privados 
+    public Pet() {} // constructor por defecto
 
-    // public Guid Id => id;
-
-    // public string? Name
-    // {
-    //     get => name;
-    //     set => name = string.IsNullOrWhiteSpace(value) ? "UNKNOWN" : value; // si el nombre esta vacio o tiene espacios en blanco se asigna "UNKNOWN", si no se asigna un valor
-    // }
-
-    // public string? Specie
-    // {
-    //     get => specie;
-    //     set => specie = string.IsNullOrWhiteSpace(value) ? "UNKNOWN" : value;
-    // }
+    // CONSTRUCTOR: inicializa datos básicos de la mascota, llama al constructor de la clase base (Animal)
+    public Pet(string name, byte age, string specie, string symptom) : base(name, age, specie, symptom)
+    {
+    }
 
     public override void Breathe() // implementacion del metodo abstracto
     {

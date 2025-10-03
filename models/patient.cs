@@ -1,55 +1,65 @@
 namespace healthclinic.models; //definimos el espacio de trabajo 
 using healthclinic.Interfaces;
 
-public class Patient : Iregistrable, INotificable // se crea la clase con sus atributos, Los campos privados van en minuscula y los publicos en mayuscula 
+public class Patient : Iregistrable, INotificable 
 {
-    private Guid id = Guid.NewGuid(); // Va a generar un id automatico 
+    // 🔹 Campos privados
+    private Guid id = Guid.NewGuid(); 
     private string? name;
+    private string? address;
     private byte age;
 
-    private string? symptom;  // aqui solo se hace la estructura del paciente 
+    //  Propiedades públicas
+    public Guid Id => id; // Solo lectura
 
-    public Guid Id => id;
+    public string gender { get; set; } = "UNKNOWN"; 
+    public string email { get; set; } = string.Empty; 
+    public string phone { get; set; } = string.Empty;
 
-    public string? Name
-
+    public string? Name // Propiedad pública con validación
     {
         get => name;
         set => name = string.IsNullOrWhiteSpace(value) ? "UNKNOWN" : value; // si el nombre esta vacio o tiene espacios en blanco se asigna "UNKNOWN", si no se asigna un valor
     }
 
-    public byte Age
+    public byte Age // Propiedad pública con validación
     {
         get => age;
         set => age = value > 0 ? value : (byte)1; // si la edad es mayor a 0 se asigna el valor, si no se asigna 1
     }
 
-    public string? Symptom
+    private string Address // Propiedad pública con validación
     {
-        get => symptom;
-        set => symptom = string.IsNullOrWhiteSpace(value) ? "No Symptom" : value; // si el sintoma esta vacio o tiene espacios en blanco se asigna "No Symptom", si no se asigna un valor
+        get => address!; // el operador ! indica que la variable no es nula(NO OLVIDARLO PARA FUTURAS OCASIONES)
+        set => address = string.IsNullOrWhiteSpace(value) ? "Not public address" : value; // si la dirección esta vacia o tiene espacios en blanco se asigna "Not public address", si no se asigna un valor
     }
 
+    //  Relación con mascotas
+    public List<Pet> Pets { get; set; } = new List<Pet>(); // lista de mascotas del paciente
 
-    // relacion 1-1 para que cada paciente tenga una mascota o ninguna
-    // public Pet? Pet { get; set; }
+    //  Constructores soluciona errores de vacio
+    public Patient() { } // constructor por defecto
+    //  Constructor
+    public Patient(string name, byte age, string email, string phone, string address, string gender = "UNKNOWN")
+    {
+        this.id = Guid.NewGuid();   // genera nuevo Id
+        this.Name = name;
+        this.Age = age;
+        this.email = email;
+        this.phone = phone;
+        this.Address = address;
+        this.gender = gender;
+        this.Pets = new List<Pet>();
+    }
 
-    // relacion de 1 - N porque un paciente puede tener varias mascotas. 
-
-    public List<Pet> Pets { get; set; } = new List<Pet>(); // inicializamos la lista de mascotas para evitar errores de referencia nula
-
-
-    public void RegisterPatient() // Implementacion del metodo de la interfaz Iregistrable
+    //  Métodos de interfaz
+    public void RegisterPatient() // Implementación del método de la interfaz IRegistrable
     {
         Console.WriteLine($"The patient {Name} has been registed successfully with {Pets.Count} pets.");
     }
 
-
-    public void SendNotification(string message) // Implementacion del metodo de la interfaz INotificable
+    public void SendNotification(string message) // Implementación del método de la interfaz INotificable
     {
-        Console.WriteLine($"This is a reminder for patient: {Name} , don't forget your medical appointment tomorrow.");
+        Console.WriteLine($"This is a reminder for patient: {Name}, don't forget your medical appointment tomorrow.");
     }
 }
-
-
-
