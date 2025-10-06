@@ -7,7 +7,7 @@ using healthclinic.Interfaces;
 
 
 
-List<Patient> patients = new(); // lista de pacientes en memoria
+List<Patient> patients = new(); // Patient list in memory
 IPatientService service = new PatientService(); // aqui se cre un objeto para usar los metodos 
 
 bool continueProgram = true; // variable para controlar el bucle del menu
