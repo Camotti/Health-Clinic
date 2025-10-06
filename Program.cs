@@ -51,6 +51,7 @@ while (continueProgram) // mientras continueProgram sea true, el menu se seguira
             break;
 
         case "6":
+            Console.WriteLine("Exiting program. Goodbye!");
             continueProgram = false; // cambia la variable para salir del bucle
             break;
 
@@ -76,7 +77,7 @@ while (continueProgram) // mientras continueProgram sea true, el menu se seguira
 }
 
 // Fin del programa
-Console.WriteLine("Exiting program. Goodbye!");
+
 
 
 
