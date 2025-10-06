@@ -75,6 +75,8 @@ while (continueProgram) // mientras continueProgram sea true, el menu se seguira
     }
 }
 
+// Fin del programa
+Console.WriteLine("Exiting program. Goodbye!");
 
 
 
