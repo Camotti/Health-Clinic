@@ -1,9 +1,9 @@
 namespace healthclinic.models; //definimos el espacio de trabajo 
-using healthclinic.Interfaces;
+using healthclinic.Interfaces; //importamos la interfaz IRegistrable y INotificable
 
 public class Patient : Iregistrable, INotificable 
 {
-    // 🔹 Campos privados
+    //  Campos privados
     private Guid id = Guid.NewGuid(); 
     private string? name;
     private string? address;
