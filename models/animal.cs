@@ -22,7 +22,7 @@ public abstract class Animal
         set
         {
             if (value < 0) age = 0;
-            else if (value > 30) age = 30;
+            else if (value > 20) age = 20;
             else age = value;
         }
     }
