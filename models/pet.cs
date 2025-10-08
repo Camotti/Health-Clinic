@@ -5,14 +5,23 @@ namespace healthclinic.models;
 
 public class Pet : Animal , Iregistrable //
 {
-    public Pet() {} // constructor por defecto
+    private string? symptom;
 
-    // CONSTRUCTOR: inicializa datos básicos de la mascota, hereda al constructor de la clase base (Animal)
+    public string? Symptom
+    {
+        get => symptom;
+        set => symptom = string.IsNullOrWhiteSpace(value) ? "No Symptom" : value;
+    }
+
+
+    public Pet() { } // constructor por defecto
+
+    // CONSTRUCTOR:
     public Pet(
         string name, byte age, string specie, string symptom) : base(name, age, specie, symptom)
     {}
 
-
+    //Metodos
     public override void Breathe() // implementacion del metodo abstracto
     {
         Console.WriteLine($"The {Name} is breathing calmly.");
