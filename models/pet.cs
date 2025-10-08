@@ -18,8 +18,10 @@ public class Pet : Animal , Iregistrable //
 
     // CONSTRUCTOR:
     public Pet(
-        string name, byte age, string specie, string symptom) : base(name, age, specie, symptom)
-    {}
+        string name, byte age, string specie, string symptom) : base(name, age, specie)
+    {
+        Symptom = symptom;
+    }
 
     //Metodos
     public override void Breathe() // implementacion del metodo abstracto
