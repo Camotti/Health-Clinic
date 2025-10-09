@@ -6,7 +6,7 @@ namespace healthclinic.models;
 public class Pet : Animal , Iregistrable //
 {
     private string? symptom;
-
+    // validacion
     public string? Symptom
     {
         get => symptom;

@@ -8,7 +8,7 @@ public class Veterinarian: IAtendibles
     public string Specialty { get; set; } = string.Empty;
 
 
-
+    public Veterinarian () {}
     public Veterinarian(string name, string specialty)
     {
         Name = name;
