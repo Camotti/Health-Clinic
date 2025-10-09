@@ -1,10 +1,10 @@
 namespace healthclinic.Interfaces;
 
-public interface IGenericRepository<Task>
+public interface IGenericRepository<T>
 {
-    void Add(Type entity); // crear
-    List<Task> Getall(); //Leer todos
-    Task GetById(Guid id); // leer por ID 
-    void Update(Type entity);
+    void Add(T entity); // crear
+    List<T> GetAll(); //Leer todos
+    T? GetById(Guid id); // leer por ID 
+    void Update(T entity);
     void Delete(Guid id); // eliminar por ID 
 }
