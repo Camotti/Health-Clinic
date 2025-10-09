@@ -7,6 +7,7 @@ namespace healthclinic.Repositories
     {
         public class PatientRepository : IPatientRepository
         {
+            
             public void Add(Patient patient)
             {
                 Database.Patients.Add(patient);
