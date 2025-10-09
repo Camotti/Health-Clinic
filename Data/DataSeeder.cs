@@ -32,8 +32,7 @@ namespace healthclinic.Data
                 Phone = "3209876543",
                 Gender = "Femenino"
             };
-            Database.Patients.Add(patient1);
-            Database.Patients.Add(patient2);
+            Database.Patients.AddRange(new[] { patient1, patient2 });
 
 
             //veterinarian
@@ -58,9 +57,7 @@ namespace healthclinic.Data
                 Specialty = "Veterinaria general"
             };
 
-             Database.Veterinarians.Add(vet1);
-             Database.Veterinarians.Add(vet2);
-             Database.Veterinarians.Add(vet3);
+            Database.Veterinarians.AddRange(new[] { vet1, vet2, vet3 });
 
 
             // mascotas 
@@ -90,10 +87,12 @@ namespace healthclinic.Data
                 Symptom = "Fiebre"
                 // OwnerId = patient2.Id
             };
+            Database.Pets.AddRange(new[] { pet1, pet2, pet3 });
 
-            Database.Pets.Add(pet1);
-            Database.Pets.Add(pet2);
-            Database.Pets.Add(pet3);
+            // asociar mascotas con sus duesños para que no se un reguero
+            patient1.Pets.Add(pet1);
+            patient2.Pets.AddRange(new[] { pet2, pet3 });
+
         }
     }
 }
