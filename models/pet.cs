@@ -6,6 +6,8 @@ namespace healthclinic.models;
 public class Pet : Animal , Iregistrable //
 {
     private string? symptom;
+    public Guid ownerId { get; set; } //Relacion con el dueño 
+
     // validacion
     public string? Symptom
     {
