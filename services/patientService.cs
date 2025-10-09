@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using healthclinic.models;      // importamos los modelos
-using healthclinic.Interfaces; // importamos la interfaz
+using healthclinic.models;      
+using healthclinic.Interfaces; 
 using healthclinic.Exceptions; // importamos la excepción personalizada
 using System.Linq;
 

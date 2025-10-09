@@ -1,7 +1,4 @@
-﻿using System.Data.Common;
-using System.Reflection.Metadata.Ecma335;
-using System.Security.Cryptography;
-using healthclinic.models;
+﻿using healthclinic.models;
 using healthclinic.Services;
 using healthclinic.Interfaces;
 
@@ -76,7 +73,7 @@ while (continueProgram) // mientras continueProgram sea true, el menu se seguira
     }
 }
 
-// Fin del programa
+
 
 
 
