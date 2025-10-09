@@ -8,9 +8,10 @@ namespace healthclinic.Data
         public static List<Patient> Patients { get; set; } = new List<Patient>();
         public static List<Pet> Pets { get; set; } = new List<Pet>();
         public static List<Veterinarian> Veterinarians { get; set; } = new List<Veterinarian>();
+        public static List<Appointment> Appointments { get; set; } = new List<Appointment>(); //inicializarlas listas
     }
     
 
-    
+
 
 }
