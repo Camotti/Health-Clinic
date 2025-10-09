@@ -23,15 +23,17 @@ namespace healthclinic.Repositories
             }
         }
 
-        public IEnumerable<Appointment> GetAll()
+        public List<Appointment> GetAll()
         {
             return Database.Appointments;
         }
+
 
         public Appointment? GetById(Guid id)
         {
             return Database.Appointments.FirstOrDefault(a => a.Id == id);
         }
+
 
         public void Update(Appointment entity)
         {
@@ -43,6 +45,12 @@ namespace healthclinic.Repositories
                 update.Date = entity.Date;
                 update.Reason = entity.Reason;
             }
+        }
+
+
+        public void Save()
+        {
+            
         }
     }
 }
