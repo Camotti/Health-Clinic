@@ -37,18 +37,20 @@ namespace healthclinic.utils
             }
         }
 
+        
+
 
         public static int ReadInt(string prompt)
         {
             while (true)
             {
-                Console.WriteLine($"prompt ");
+                Console.WriteLine($"{prompt} ");
                 string? input = Console.ReadLine();
 
                 if (int.TryParse(input, out int value))
                     return value;
 
-                Console.WriteLine("Invalid entry, write a number again.");    
+                Console.WriteLine("Invalid entry, write a number again.");
             }
         }
 
@@ -56,18 +58,18 @@ namespace healthclinic.utils
 
 
 
-        public static byte ReadByte(string prompt)
-        {
-            byte result;
-            while (true)
-            {
-                Console.Write($"{prompt}");
-                string? input = Console.ReadLine();
-                if (byte.TryParse(input, out result))
-                    return result;
-                Console.WriteLine("❌ Entrada inválida, intenta de nuevo (solo números entre 0-255).");
-            }
-        }
+        // public static byte ReadByte(string prompt)
+        // {
+        //     byte result;
+        //     while (true)
+        //     {
+        //         Console.Write($"{prompt}");
+        //         string? input = Console.ReadLine();
+        //         if (byte.TryParse(input, out result))
+        //             return result;
+        //         Console.WriteLine("❌ Entrada inválida, intenta de nuevo (solo números entre 0-255).");
+        //     }
+        // }
 
         // ✅ ESTE MÉTODO SOLUCIONA EL ERROR DE ReadGuid("mensaje")
         public static Guid ReadGuid(string prompt)
@@ -87,7 +89,7 @@ namespace healthclinic.utils
 
         // metodo 3 , leer string no vacios para nombre 
 
-        public static string ReadNonEmptyString (string prompt)
+        public static string ReadNonEmptyString(string prompt)
         {
             string? input;
             while (true)
@@ -102,8 +104,8 @@ namespace healthclinic.utils
             }
         }
 
-        
-        
+
+
 
 
 
@@ -121,5 +123,10 @@ namespace healthclinic.utils
             }
         }
 
+
+        public static string ReadString( string prompt)
+        {
+            return ReadNonEmptyString(prompt);
+        }
     }
 }

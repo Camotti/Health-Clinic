@@ -33,6 +33,3 @@ C:\Users\ASUS X512F\Health-Clinic\obj\Debug\net8.0\healthclinic.AssemblyInfoInpu
 C:\Users\ASUS X512F\Health-Clinic\obj\Debug\net8.0\healthclinic.AssemblyInfo.cs
 C:\Users\ASUS X512F\Health-Clinic\obj\Debug\net8.0\healthclinic.csproj.CoreCompileInputs.cache
 C:\Users\ASUS X512F\Health-Clinic\obj\Debug\net8.0\healthclinic.sourcelink.json
-C:\Users\ASUS X512F\Health-Clinic\obj\Debug\net8.0\healthclinic.dll
-C:\Users\ASUS X512F\Health-Clinic\obj\Debug\net8.0\refint\healthclinic.dll
-C:\Users\ASUS X512F\Health-Clinic\obj\Debug\net8.0\healthclinic.pdb

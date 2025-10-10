@@ -4,9 +4,9 @@ using healthclinic.Data;
 using System.Linq;
 
 
-namespace healthclinic.Repositories
+namespace healthclinic.repositories
 {
-    public class veterinarianRepository : IveterinarianRepository
+    public class VeterinarianRepository : IveterinarianRepository
     {
         public void Add(Veterinarian vet)
         {

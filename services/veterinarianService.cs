@@ -1,96 +1,51 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using healthclinic.models;
 using healthclinic.Interfaces;
-using System.Linq;
+using healthclinic.repositories;
+using healthclinic.Data; // para usar VeterinarianRepository en el ctor por defecto
 
-
-
-namespace healthclinic.Services
+namespace healthclinic.services   // <- usar "services" en minúscula (coherente con otros archivos)
 {
-    public class veterinarianService 
+    public class VeterinarianService
     {
         private readonly IveterinarianRepository _repository;
 
-        public veterinarianService(IveterinarianRepository repository)
+        // ctor por defecto que crea el repositorio concreto (facilita usar new VeterinarianService() en el menú)
+        public VeterinarianService() : this(new VeterinarianRepository())
+        {
+        }
+
+        // ctor para inyección (si quieres pasar un repo mock o distinto)
+        public VeterinarianService(IveterinarianRepository repository)
         {
             _repository = repository;
         }
 
+        // Métodos que el menú espera:
+        public void Add(Veterinarian vet) => _repository.Add(vet);
 
-        public void RegisterVeterinarian()
+        public List<Veterinarian> GetAll() => _repository.GetAll();
+
+        public Veterinarian? GetById(Guid id) => _repository.GetById(id);
+
+        public void Update(Veterinarian vet) => _repository.Update(vet);
+
+        public bool Delete(Guid id)
         {
-            Console.WriteLine("Veterinarian name: ");
-            string? name = Console.ReadLine();
-            if (string.IsNullOrWhiteSpace(name))
-            {
-                return;
-            }
-
-            Console.WriteLine("Speciality: ");
-            string? specialty = Console.ReadLine();
-            if (string.IsNullOrWhiteSpace(specialty))
-            {
-                Console.WriteLine("Specialty cannot be empty.");
-                return;
-            }
-
-            Console.WriteLine("Years of experience: ");
-            int.TryParse(Console.ReadLine(), out int experience);
-
-
-            var veterinarian = new Veterinarian
-            {
-                Name = name,
-                Specialty = specialty,
-                ExperienceYears = experience
-            };
-
-
-            _repository.Add(veterinarian);
-            Console.WriteLine("Veterinarian correctly registered.");
-        }
-
-
-
-        public void ListVeterinarians()
-        {
-            var vets = _repository.GetAll();
-            if (!vets.Any())
-            {
-                Console.WriteLine("No veterinarians found.");
-                return;
-            }
-
-            foreach (var vet in vets)
-            {
-                Console.WriteLine($"ID: {vet.Id} , Name: {vet.Name} , specialty: {vet.Specialty} , experience years: {vet.ExperienceYears} ");
-            }
-        }
-        
-
-        public void SearchVeterinarianById(Guid id)
-        {
-            var vet = _repository.GetById(id);
-            if (vet == null)
-            {
-                Console.WriteLine("Veterinarian not found");
-                return;
-            }
-
-            Console.WriteLine($"Veterinarian Found: Id: {vet.Id} Name: {vet.Name} specialty: {vet.Specialty} experience years: {vet.ExperienceYears}  ");
-        }
-
-
-        public void DeleteVeterinarian(Guid id)
-        {
-            var vet = _repository.GetById(id);
-            if (vet == null)
-            {
-                Console.WriteLine("Veterinarian not found");
-                return;
-            }
-
+            var found = GetById(id);
+            if (found == null) return false;
             _repository.Delete(id);
-            Console.WriteLine($"Veterinarian {vet.Name} deleted succesfully.");
+            return true;
+        }
+
+        // (Opcional) Mantengo  métodos originales renombrados/llamando a los nuevos
+        public void RegisterVeterinarian(Veterinarian vet) => Add(vet);
+        public void ListVeterinarians() 
+        {
+            var vets = GetAll();
+            foreach (var v in vets) Console.WriteLine($"{v.Id} {v.Name} {v.Specialty}");
         }
     }
 }
