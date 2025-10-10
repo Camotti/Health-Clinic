@@ -1,15 +1,17 @@
 using healthclinic.models;
 using healthclinic.services;
-using healthclinic.utils; 
+using healthclinic.utils;
+using healthclinic.repositories;
 
 namespace healthclinic.menus
 {
     public class PetMenu
     {
-        private readonly PetService _petService = new();
 
-        public void Show()
+        public static void Show()
         {
+            var petRepository = new petRepository();
+            var pets = petRepository.GetAll();
             int option;
             do
             {
@@ -25,11 +27,11 @@ namespace healthclinic.menus
 
                 switch (option)
                 {
-                    case 1: AddPet(); break;
-                    case 2: ListPets(); break;
-                    case 3: FindPet(); break;
-                    case 4: UpdatePet(); break;
-                    case 5: DeletePet(); break;
+                    case 1: AddPet(petRepository); break;
+                    case 2: ListPets(petRepository); break;
+                    case 3: FindPet(petRepository); break;
+                    case 4: UpdatePet(petRepository); break;
+                    case 5: DeletePet(petRepository); break;
                     case 0: Console.WriteLine("Volviendo..."); break;
                     default: Console.WriteLine("❌ Opción no válida."); break;
                 }
@@ -39,7 +41,7 @@ namespace healthclinic.menus
             } while (option != 0);
         }
 
-        private void AddPet()
+        private static void AddPet(petRepository petsRep)
         {
             Console.WriteLine("\n=== Registro de Mascota ===");
             var pet = new Pet
@@ -49,13 +51,13 @@ namespace healthclinic.menus
                 Specie = ConsoleHelper.ReadString("Especie: "),
                 Age = (byte)ConsoleHelper.ReadInt("Edad: ")
             };
-            _petService.Add(pet);
+            petsRep.Add(pet);
         }
 
-        private void ListPets()
+        public static void ListPets(petRepository petsRep)
         {
+            var pets = petsRep.GetAll();
             Console.WriteLine("\n=== Listado de Mascotas ===");
-            var pets = _petService.GetAll();
             if (!pets.Any())
             {
                 Console.WriteLine("⚠️ No hay mascotas registradas.");
@@ -68,10 +70,13 @@ namespace healthclinic.menus
             }
         }
 
-        private void FindPet()
+        private static void FindPet(petRepository petsRep)
         {
+            var pets = petsRep.GetAll();
+            if(pets.Count == 0){ return; }
+            ListPets(petsRep);
             var id = ConsoleHelper.ReadGuid("Ingrese el ID de la mascota: ");
-            var pet = _petService.GetById(id);
+            var pet = petsRep.GetById(id);
             if (pet == null)
             {
                 Console.WriteLine("⚠️ Mascota no encontrada.");
@@ -81,10 +86,13 @@ namespace healthclinic.menus
             Console.WriteLine($"🐾 {pet.Name} ({pet.Specie}) - Edad: {pet.Age}");
         }
 
-        private void UpdatePet()
+        private static void UpdatePet(petRepository petsRep)
         {
+            var pets = petsRep.GetAll();
+            if(pets.Count == 0){ return; }
+            ListPets(petsRep);
             var id = ConsoleHelper.ReadGuid("Ingrese el ID de la mascota a actualizar: ");
-            var existing = _petService.GetById(id);
+            var existing = petsRep.GetById(id);
             if (existing == null)
             {
                 Console.WriteLine("⚠️ No existe una mascota con ese ID.");
@@ -94,13 +102,16 @@ namespace healthclinic.menus
             existing.Name = ConsoleHelper.ReadString("Nuevo nombre: ");
             existing.Specie = ConsoleHelper.ReadString("Nueva especie: ");
             existing.Age = (byte)ConsoleHelper.ReadInt("Nueva edad: ");
-            _petService.Update(existing);
+            petsRep.Update(existing);
         }
 
-        private void DeletePet()
+        private static void DeletePet(petRepository petsRep)
         {
+            var pets = petsRep.GetAll();
+            if(pets.Count == 0){ return; }
+            ListPets(petsRep);
              var id = ConsoleHelper.ReadGuid("Ingrese el ID de la mascota a eliminar: ");
-            _petService.Delete(id);
+            petsRep.Delete(id);
             Console.WriteLine("Mascota eliminada con éxito (si existía).");
         }
     }

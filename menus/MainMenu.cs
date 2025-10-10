@@ -9,10 +9,7 @@ namespace healthclinic.menus
         {
             while (true)
             {
-                Console.Clear();
-                Console.WriteLine("===================================");
-                Console.WriteLine("🏥 HEALTHCLINIC - MAIN MENU");
-                Console.WriteLine("===================================");
+                
                 Console.WriteLine("1️⃣  Patient Menu");
                 Console.WriteLine("2️⃣  Pet Menu");
                 Console.WriteLine("3️⃣  Appointment Menu");
@@ -27,12 +24,10 @@ namespace healthclinic.menus
                         PatientMenu.Show();
                         break;
                     case "2":
-                        var petMenu = new PetMenu();
-                        petMenu.Show();
+                        PetMenu.Show();
                         break;
                     case "3":
-                        var appointmentMenu = new AppointmentMenu();
-                        appointmentMenu.Show();
+                        AppointmentMenu.Show();
                         break;
                     case "0":
                         Console.WriteLine("👋 Exiting program...");

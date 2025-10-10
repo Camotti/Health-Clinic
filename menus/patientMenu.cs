@@ -13,7 +13,7 @@ namespace healthclinic.menus
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("=== 👤 MENÚ PACIENTES ===");
+                Console.WriteLine("===  MENÚ PACIENTES ===");
                 Console.WriteLine("1️⃣ Registrar paciente");
                 Console.WriteLine("2️⃣ Listar pacientes");
                 Console.WriteLine("3️⃣ Buscar paciente por ID");
@@ -42,7 +42,7 @@ namespace healthclinic.menus
         private static void AddPatient()
         {
             var name = ConsoleHelper.ReadNonEmptyString("Nombre: ");
-            var age = ConsoleHelper.ReadByte("Edad: ");
+            var age = ConsoleHelper.Readbyte("Edad: ");
             var email = ConsoleHelper.ReadNonEmptyString("Email: ");
             var phone = ConsoleHelper.ReadNonEmptyString("Teléfono: ");
             var gender = ConsoleHelper.ReadNonEmptyString("Género: ");
@@ -55,13 +55,16 @@ namespace healthclinic.menus
 
         private static void ListPatients()
         {
+            if(_patientRepo.GetAll().Count == 0){ return; }
             Console.WriteLine("\n📋 Lista de pacientes:");
             foreach (var p in _patientRepo.GetAll())
-                Console.WriteLine($"🧍 {p.Name} | {p.Email} | {p.Gender}");
+                Console.WriteLine($"🧍 {p.Id} | {p.Name} | {p.Email} | {p.Gender}");
         }
 
         private static void GetPatientById()
         {
+            if (_patientRepo.GetAll().Count == 0) { return; }
+            ListPatients();
             var id = ConsoleHelper.ReadGuid("Ingrese el ID del paciente: ");
             var p = _patientRepo.GetById(id);
             if (p != null)
@@ -72,6 +75,8 @@ namespace healthclinic.menus
 
         private static void UpdatePatient()
         {
+            if (_patientRepo.GetAll().Count == 0) { return; }
+            ListPatients();
             var id = ConsoleHelper.ReadGuid("ID del paciente a actualizar: ");
             var p = _patientRepo.GetById(id);
             if (p == null)
@@ -94,6 +99,8 @@ namespace healthclinic.menus
 
         private static void DeletePatient()
         {
+            if(_patientRepo.GetAll().Count == 0){ return; }
+            ListPatients();
             var id = ConsoleHelper.ReadGuid("ID del paciente a eliminar: ");
             _patientRepo.Delete(id);
             Console.WriteLine("🗑️ Paciente eliminado correctamente.");

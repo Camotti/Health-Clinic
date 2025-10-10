@@ -12,11 +12,12 @@ namespace healthclinic.utils
        
         public static void ShowMainMenu()
         {
-            
-            Console.WriteLine("1️⃣  Patient Management 🐾");
-            Console.WriteLine("2️⃣  Veterinarian Management 👨‍⚕️");
-            Console.WriteLine("3️⃣  Appointment Management 📅");
-            Console.WriteLine("4️⃣  Exit 🚪");
+            Console.WriteLine("\n📋 Appointment Menu:");
+            Console.WriteLine("1️⃣  Registrar nueva cita 🐾");
+            Console.WriteLine("2️⃣  Ver citas 👨‍⚕️");
+            Console.WriteLine("3️⃣  Actualizar cita 📅");
+            Console.WriteLine("4️⃣  Eliminar cita");
+            Console.WriteLine("0  Exit 🚪");
         }
 
         

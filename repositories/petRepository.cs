@@ -3,7 +3,7 @@ using healthclinic.Data;
 using healthclinic.models;
 using System.Linq;
 
-namespace healthclinic.Repositories
+namespace healthclinic.repositories
 {
     public class petRepository : IPetRepository
     {
