@@ -82,7 +82,15 @@ namespace healthclinic.Services
 
         public void DeleteVeterinarian(Guid id)
         {
-            
+            var vet = _repository.GetById(id);
+            if (vet == null)
+            {
+                Console.WriteLine("Veterinarian not found");
+                return;
+            }
+
+            _repository.Delete(id);
+            Console.WriteLine($"Veterinarian {vet.Name} deleted succesfully.");
         }
     }
 }
