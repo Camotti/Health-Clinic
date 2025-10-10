@@ -2,7 +2,7 @@ using healthclinic.models;
 using healthclinic.Repositories;
 using healthclinic.utils;
 
-namespace healthclinic.Menu
+namespace healthclinic.menus
 {
     public static class PatientMenu
     {

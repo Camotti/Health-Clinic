@@ -75,7 +75,18 @@ while (continueProgram) // mientras continueProgram sea true, el menu se seguira
 
 
 
+// using healthclinic.menus;
 
+// namespace healthclinic
+// {
+//     class Program
+//     {
+//         static void Main()
+//         {
+//             MainMenu.Show(); //  Inicia el menú principal
+//         }
+//     }
+// }
 
 
 

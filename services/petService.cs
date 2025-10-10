@@ -24,9 +24,9 @@ namespace healthclinic.services
             existing.Name = pet.Name;
             existing.Specie = pet.Specie;
             existing.Age = pet.Age;
-            // si usas ownerId (camelCase) en tu modelo:
+            // se us ownerId (camelCase)
             existing.ownerId = pet.ownerId;
-            // si tienes Symptom u otras propiedades:
+            // si tiene Symptom u otras propiedades:
             existing.Symptom = pet.Symptom;
         }
 
