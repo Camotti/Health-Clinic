@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("healthclinic")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4deae815874305c4fc73822169140304b5eb433c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4fbbc4908977276e9db66e596255b1b3c78cc267")]
 [assembly: System.Reflection.AssemblyProductAttribute("healthclinic")]
 [assembly: System.Reflection.AssemblyTitleAttribute("healthclinic")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

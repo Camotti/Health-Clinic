@@ -5,7 +5,7 @@ namespace healthclinic.utils
 {
     public static class ConsoleHelper
     {
-        public static byte Readbyt(string prompt) //metodo 1 , leer opciones enteras del menu
+        public static byte Readbyte(string prompt) //metodo 1 , leer opciones enteras del menu
         {
             byte result;
             while (true)
@@ -38,7 +38,25 @@ namespace healthclinic.utils
         }
 
 
-          public static byte ReadByte(string prompt)
+        public static int ReadInt(string prompt)
+        {
+            while (true)
+            {
+                Console.WriteLine($"prompt ");
+                string? input = Console.ReadLine();
+
+                if (int.TryParse(input, out int value))
+                    return value;
+
+                Console.WriteLine("Invalid entry, write a number again.");    
+            }
+        }
+
+
+
+
+
+        public static byte ReadByte(string prompt)
         {
             byte result;
             while (true)

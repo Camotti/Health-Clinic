@@ -72,7 +72,7 @@ namespace healthclinic.menus
 
             foreach (var a in list)
             {
-                Console.WriteLine($"ID: {a.Id} | Fecha: {a.Date} | Motivo: {a.Reason} | MascotaID: {a.PetId} | VetID: {a.VeterinarianId}");
+                Console.WriteLine($"ID: {a.Id} | Fecha: {a.Date} | Motivo: {a.Reason} | MascotaID: {a.PetId} | VetID: {a.VeterinarianID}");
             }
         }
 
