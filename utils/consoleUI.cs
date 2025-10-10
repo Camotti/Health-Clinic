@@ -17,8 +17,9 @@ namespace healthclinic.utils
             Console.WriteLine("\n📋 Appointment Menu:");
             Console.WriteLine("1️⃣  Registrar nueva cita 🐾");
             Console.WriteLine("2️⃣  Ver citas 👨‍⚕️");
-            Console.WriteLine("3️⃣  Actualizar cita 📅");
+            Console.WriteLine("3️⃣  Ver cita por ID");
             Console.WriteLine("4️⃣  Eliminar cita");
+            Console.WriteLine("5  Actualizar cita 📅");
             Console.WriteLine("0  Exit 🚪");
         }
 
