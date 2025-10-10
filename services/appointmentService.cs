@@ -26,7 +26,7 @@ namespace healthclinic.services
 
 
         //eliminar una cita por ID 
-        public bool Delete( Guid id)
+        public bool Delete(Guid id)
         {
             var appointment = GetById(id);
             if (appointment == null)
@@ -35,5 +35,22 @@ namespace healthclinic.services
             _appointments.Remove(appointment);
             return true;
         }
+        
+
+                // Actualizar una cita existente
+        public bool Update(Appointment updatedAppointment)
+        {
+            var existingAppointment = GetById(updatedAppointment.Id);
+            if (existingAppointment == null)
+                return false;
+
+            existingAppointment.Date = updatedAppointment.Date;
+            existingAppointment.Reason = updatedAppointment.Reason;
+            existingAppointment.PetId = updatedAppointment.PetId;
+            existingAppointment.VeterinarianID = updatedAppointment.VeterinarianID;
+
+            return true;
+        }
+
     }
 }

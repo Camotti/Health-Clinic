@@ -12,7 +12,8 @@ namespace healthclinic.menus
                 
                 Console.WriteLine("1️⃣  Patient Menu");
                 Console.WriteLine("2️⃣  Pet Menu");
-                Console.WriteLine("3️⃣  Appointment Menu");
+                Console.WriteLine("3 Veterinarian Menu");
+                Console.WriteLine("4.  Appointment  Menu");
                 Console.WriteLine("0️⃣  Exit");
                 Console.Write("\nSelect an option: ");
 
@@ -26,7 +27,11 @@ namespace healthclinic.menus
                     case "2":
                         PetMenu.Show();
                         break;
+
                     case "3":
+                        VeterinarianMenu.Show();
+                        break;
+                    case "4":
                         AppointmentMenu.Show();
                         break;
                     case "0":

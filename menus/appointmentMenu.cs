@@ -30,6 +30,10 @@ public class AppointmentMenu
                 case 4:
                     DeleteAppointment();
                     break;
+                case 5:
+                    UpdateAppointment();
+                    break;
+
                 case 0:
                     return;
                 default:
@@ -122,6 +126,7 @@ public class AppointmentMenu
     {
         try
         {
+            ListAppointments();
             var id = ConsoleHelper.ReadGuid("Ingrese el ID de la cita: ");
             var appointment = _service.GetById(id);
 
@@ -152,4 +157,65 @@ public class AppointmentMenu
             Console.WriteLine($"Error al eliminar la cita: {ex.Message}");
         }
     }
+
+
+    private static void UpdateAppointment()
+    {
+        try
+        {
+            ListAppointments(); // Mostrar todas las citas para que el usuario pueda seleccionar una
+            var id = ConsoleHelper.ReadGuid("Ingrese el ID de la cita a actualizar: ");
+            var appointment = _service.GetById(id);
+
+            if (appointment == null)
+            {
+                Console.WriteLine("Cita no encontrada.");
+                return;
+            }
+
+            Console.WriteLine("Deje el campo vacío para mantener el valor actual.");
+
+            DateTime? newDate = null;
+            try
+            {
+                newDate = ConsoleHelper.ReadDate("Nueva fecha (dd/MM/yyyy): ");
+            }
+            catch
+            {
+                Console.WriteLine("Si el usuario deja todo vacio");
+            }
+
+            string newReason = ConsoleHelper.ReadNonEmptyString("Nuevo motivo de la cita: ");
+
+            if (newDate.HasValue)
+            {
+                appointment.Date = newDate.Value;
+            }
+
+            if (!string.IsNullOrWhiteSpace(newReason))
+            {
+                appointment.Reason = newReason;
+            }
+
+            _service.Update(appointment); // Asegúrate de implementar este método en AppointmentService
+            Console.WriteLine("Cita actualizada con éxito.");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error al actualizar la cita: {ex.Message}");
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
 }
+
+

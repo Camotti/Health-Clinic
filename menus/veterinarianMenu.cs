@@ -7,9 +7,9 @@ namespace healthclinic.menus
 {
     public class VeterinarianMenu
     {
-        private readonly VeterinarianService _service = new VeterinarianService();
+        private static readonly VeterinarianService _service = new VeterinarianService();
 
-        public void Show()
+        public static void Show()
         {
             while (true)
             {
@@ -49,7 +49,7 @@ namespace healthclinic.menus
             }
         }
 
-        private void AddVeterinarian()
+        private static void AddVeterinarian()
         {
             var vet = new Veterinarian
             {
@@ -63,7 +63,7 @@ namespace healthclinic.menus
             Console.WriteLine("Veterinario registrado con éxito.");
         }
 
-        private void ListVeterinarians()
+        private static void ListVeterinarians()
         {
             var list = _service.GetAll();
             if (list.Count == 0)
@@ -78,7 +78,7 @@ namespace healthclinic.menus
             }
         }
 
-        private void GetVeterinarianById()
+        private static void GetVeterinarianById()
         {
             var id = ConsoleHelper.ReadGuid();
             var vet = _service.GetById(id);
@@ -92,7 +92,7 @@ namespace healthclinic.menus
             Console.WriteLine($"ID: {vet.Id} | Nombre: {vet.Name} | Especialidad: {vet.Specialty} | Teléfono: {vet.Phone}");
         }
 
-        private void UpdateVeterinarian()
+        private static void UpdateVeterinarian()
         {
             var id = ConsoleHelper.ReadGuid();
             var existing = _service.GetById(id);
@@ -111,7 +111,7 @@ namespace healthclinic.menus
             Console.WriteLine("Veterinario actualizado con éxito.");
         }
 
-        private void DeleteVeterinarian()
+        private static void DeleteVeterinarian()
         {
             var id = ConsoleHelper.ReadGuid();
             _service.Delete(id);
