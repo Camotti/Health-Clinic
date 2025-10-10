@@ -3,16 +3,16 @@ using System;
 
 namespace healthclinic.utils
 {
-    public class Validator
+    public static class ConsoleHelper
     {
-        public int ReadInt(string prompt) //metodo 1 , leer opciones enteras del menu
+        public static byte Readbyt(string prompt) //metodo 1 , leer opciones enteras del menu
         {
-            int result;
+            byte result;
             while (true)
             {
                 Console.WriteLine($"Entry: {prompt}");
                 string? input = Console.ReadLine();
-                if (int.TryParse(input, out result))
+                if (byte.TryParse(input, out result))
                 {
                     return result; // exitosa 
                 }
@@ -22,7 +22,7 @@ namespace healthclinic.utils
 
         //metodo 2 , buscar por ID
 
-        public Guid ReadGuid()
+        public static Guid ReadGuid()
         {
             Guid result;
             while (true)
@@ -38,9 +38,38 @@ namespace healthclinic.utils
         }
 
 
+          public static byte ReadByte(string prompt)
+        {
+            byte result;
+            while (true)
+            {
+                Console.Write($"{prompt}");
+                string? input = Console.ReadLine();
+                if (byte.TryParse(input, out result))
+                    return result;
+                Console.WriteLine("❌ Entrada inválida, intenta de nuevo (solo números entre 0-255).");
+            }
+        }
+
+        // ✅ ESTE MÉTODO SOLUCIONA EL ERROR DE ReadGuid("mensaje")
+        public static Guid ReadGuid(string prompt)
+        {
+            Guid result;
+            while (true)
+            {
+                Console.Write($"{prompt}");
+                string? input = Console.ReadLine();
+                if (Guid.TryParse(input, out result))
+                    return result;
+                Console.WriteLine("❌ ID inválido, formato incorrecto (ejemplo: a3f0e132-6f57-4f2b-8e1c-9a84ef89d2a3).");
+            }
+        }
+
+
+
         // metodo 3 , leer string no vacios para nombre 
 
-        public string ReadNonEmptyString (string prompt)
+        public static string ReadNonEmptyString (string prompt)
         {
             string? input;
             while (true)
