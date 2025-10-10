@@ -83,6 +83,25 @@ namespace healthclinic.utils
                 Console.WriteLine("Please try again the input cannot be empty. ");
             }
         }
+
         
+        
+
+
+
+        public static DateTime ReadDate(string prompt)
+        {
+            while (true)
+            {
+                Console.Write($"{prompt}");
+                string? input = Console.ReadLine();
+
+                if (DateTime.TryParseExact(input, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out DateTime date))
+                    return date;
+
+                Console.WriteLine("❌ Formato inválido. Usa el formato correcto: dd/MM/yyyy (por ejemplo 09/10/2025)");
+            }
+        }
+
     }
 }

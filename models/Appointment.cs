@@ -8,8 +8,7 @@ public class Appointment : Iregistrable
     public Guid VeterinarianID { get; set; }
     public DateTime Date { get; set; }
     public string Reason { get; set; } = string.Empty;
-
-
+    public Guid PetId { get; internal set; }
 
     public Appointment() { }
 
