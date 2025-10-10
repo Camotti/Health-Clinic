@@ -4,13 +4,13 @@ namespace healthclinic.models;
 
 public abstract class Animal 
 { //campos privados
-    private Guid id = Guid.NewGuid();   
+    public Guid Id { get; set; } = Guid.NewGuid();   
     private string? name;               
     private byte age;
     private string? specie;
 
     //campos publicos
-    public Guid Id => id;
+    
     public string? Name
     {
         get => name;
