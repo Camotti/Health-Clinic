@@ -2,143 +2,147 @@ using System;
 using System.Collections.Generic;
 using healthclinic.models;      
 using healthclinic.Interfaces; 
-using healthclinic.Exceptions; // importamos la excepción personalizada
+using healthclinic.Exceptions; // 
 using System.Linq;
+using healthclinic.repositories;
+using Microsoft.VisualBasic;
 
-namespace healthclinic.Services // definimos el espacio de trabajo
+namespace healthclinic.services;
+public class Patientservice : IPatientService
 {
-    public class PatientService : IPatientService
+    static PatientRepository patients = new PatientRepository();
+    // Crear una lista patient llamada patients
+
+      
+    public void RegisterPatient(List<Patient> patients)
     {
-        public void RegisterPatient(List<Patient> patients)
+        try
         {
-            try
+            Console.WriteLine("Name: ");
+            string? name = Console.ReadLine();
+            if (string.IsNullOrWhiteSpace(name))
             {
-                Console.WriteLine("Name: ");
-                string? name = Console.ReadLine();
-                if (string.IsNullOrWhiteSpace(name))
-                {
-                    Console.WriteLine(" Name cannot be empty.");
-                    return;
-                }
-
-                Console.WriteLine("Age: ");
-                if (!byte.TryParse(Console.ReadLine(), out byte age))
-                {
-                    Console.WriteLine(" Invalid age. Please enter a valid number.");
-                    return;
-                }
-
-                Console.WriteLine("Symptom: ");
-                string? symptom = Console.ReadLine();
-                if (string.IsNullOrWhiteSpace(symptom))
-                {
-                    Console.WriteLine(" Symptom empty.");
-                    return;
-                }
-
-                // Preguntar por mascotas
-                List<Pet> pets = new();
-                Console.WriteLine("How many pets does the patient have?");
-                if (int.TryParse(Console.ReadLine(), out int petCount) && petCount > 0)
-                {
-                    for (int i = 0; i < petCount; i++)
-                    {
-                        Console.WriteLine($"Pet {i + 1} name: ");
-                        string? petName = Console.ReadLine();
-
-                        Console.WriteLine($"Pet {i + 1} specie: ");
-                        string? petSpecie = Console.ReadLine();
-
-                        pets.Add(new Pet
-                        {
-                            Name = petName,
-                            Specie = petSpecie
-                        });
-                    }
-                }
-
-                patients.Add(new Patient
-                {
-                    Name = name,
-                    Age = age,
-                    
-                    Pets = pets
-                });
-
-                Console.WriteLine("✅ Patient registered successfully.");
-                Console.WriteLine($"📋 Total patients: {patients.Count}");
-            }
-            catch (Exception error)
-            {
-                Console.WriteLine($" Error occurred: {error.Message}");
-            }
-        }
-
-        public void ListPatients(List<Patient> patients)
-        {
-            if (patients.Count == 0)
-            {
-                Console.WriteLine("There aren't patients registered.");
+                Console.WriteLine(" Name cannot be empty.");
                 return;
             }
 
-            foreach (var patient in patients)
+            Console.WriteLine("Age: ");
+            if (!byte.TryParse(Console.ReadLine(), out byte age))
             {
-                Console.WriteLine($"\n Patient Name: {patient.Name}, Age: {patient.Age} , ID: {patient.Id}");
+                Console.WriteLine(" Invalid age. Please enter a valid number.");
+                return;
+            }
 
-                if (patient.Pets.Count > 0)
+            Console.WriteLine("Symptom: ");
+            string? symptom = Console.ReadLine();
+            if (string.IsNullOrWhiteSpace(symptom))
+            {
+                Console.WriteLine(" Symptom empty.");
+                return;
+            }
+
+            // Preguntar por mascotas
+            List<Pet> pets = new();
+            Console.WriteLine("How many pets does the patient have?");
+            if (int.TryParse(Console.ReadLine(), out int petCount) && petCount > 0)
+            {
+                for (int i = 0; i < petCount; i++)
                 {
-                    Console.WriteLine(" Pets:");
-                    foreach (var pet in patient.Pets)
+                    Console.WriteLine($"Pet {i + 1} name: ");
+                    string? petName = Console.ReadLine();
+
+                    Console.WriteLine($"Pet {i + 1} specie: ");
+                    string? petSpecie = Console.ReadLine();
+
+                    pets.Add(new Pet
                     {
-                        Console.WriteLine($" The name {pet.Name} and the specie: ({pet.Specie}), ID: {pet.Id}");
-                    }
-                }
-                else
-                {
-                    Console.WriteLine(" No pets.");
+                        Name = petName,
+                        Specie = petSpecie
+                    });
                 }
             }
+
+            patients.Add(new Patient
+            {
+                Name = name,
+                Age = age,
+                
+                Pets = pets
+            });
+
+            Console.WriteLine("✅ Patient registered successfully.");
+            Console.WriteLine($"📋 Total patients: {patients.Count}");
+        }
+        catch (Exception error)
+        {
+            Console.WriteLine($" Error occurred: {error.Message}");
+        }
+    }
+
+    public void ListPatients(List<Patient> patients)
+    {
+        if (patients.Count == 0)
+        {
+            Console.WriteLine("There aren't patients registered.");
+            return;
         }
 
-        public void SearchPatient(List<Patient> patients, string name)
+        foreach (var patient in patients)
         {
-            try
+            Console.WriteLine($"\n Patient Name: {patient.Name}, Age: {patient.Age} , ID: {patient.Id}");
+
+            if (patient.Pets.Count > 0)
             {
-                var patient = patients.FirstOrDefault(patient =>
-                    patient.Name?.Equals(name, StringComparison.OrdinalIgnoreCase) == true);
-
-                if (patient == null)
-                {
-                    Console.WriteLine("The patient is not registered.");
-                    return;
-                }
-
-                Console.WriteLine($"The patient {patient.Name} , Age: {patient.Age}, ID: {patient.Id} found successfully.");
-
-                if (patient.Pets == null || patient.Pets.Count == 0)
-                {
-                    throw new PwfiException($"The patient {patient.Name} doesn't have pets registered.");
-                }
-
                 Console.WriteLine(" Pets:");
                 foreach (var pet in patient.Pets)
                 {
-                    Console.WriteLine($" Pet Name: {pet.Name} Specie: {pet.Specie} ");
+                    Console.WriteLine($" The name {pet.Name} and the specie: ({pet.Specie}), ID: {pet.Id}");
                 }
             }
-            catch (PwfiException ex)
+            else
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine(" No pets.");
             }
-            catch (Exception ex)
+        }
+    }
+
+    public void SearchPatient(List<Patient> patients, string name)
+    {
+        try
+        {
+            var patient = patients.FirstOrDefault(patient =>
+                patient.Name?.Equals(name, StringComparison.OrdinalIgnoreCase) == true);
+
+            if (patient == null)
             {
-                Console.WriteLine($"Unexpected error: {ex.Message}");
+                Console.WriteLine("The patient is not registered.");
+                return;
             }
-            finally
+
+            Console.WriteLine($"The patient {patient.Name} , Age: {patient.Age}, ID: {patient.Id} found successfully.");
+
+            if (patient.Pets == null || patient.Pets.Count == 0)
             {
-                Console.WriteLine("Search operation finished.");
+                throw new PwfiException($"The patient {patient.Name} doesn't have pets registered.");
             }
+
+            Console.WriteLine(" Pets:");
+            foreach (var pet in patient.Pets)
+            {
+                Console.WriteLine($" Pet Name: {pet.Name} Specie: {pet.Specie} ");
+            }
+        }
+        catch (PwfiException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Unexpected error: {ex.Message}");
+        }
+        finally
+        {
+            Console.WriteLine("Search operation finished.");
         }
     }
 }

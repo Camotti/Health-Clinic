@@ -1,5 +1,5 @@
 using healthclinic.Interfaces;
-namespace healthclinic.Services;
+namespace healthclinic.services;
 
 
 // clase que representa una vacunacion

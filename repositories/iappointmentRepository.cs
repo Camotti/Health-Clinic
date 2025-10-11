@@ -4,7 +4,7 @@ using healthclinic.Interfaces;
 using healthclinic.models;
 
 
-namespace healthclinic.Repositories
+namespace healthclinic.repositories
 {
     public class AppointmentRepository: IAppointmentRepository
     {

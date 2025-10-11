@@ -5,7 +5,7 @@ namespace healthclinic.Interfaces
 {
     public interface IAppointmentRepository : IGenericRepository <Appointment>
     {  
-        //agregar mas metodos
+        
       
     }
 }

@@ -3,7 +3,7 @@
     using healthclinic.models;
     using System.Linq;
 
-namespace healthclinic.Repositories
+namespace healthclinic.repositories
     {
         public class PatientRepository : IPatientRepository
         {

@@ -71,7 +71,7 @@ namespace healthclinic.utils
         //     }
         // }
 
-        // ✅ ESTE MÉTODO SOLUCIONA EL ERROR DE ReadGuid("mensaje")
+        // 
         public static Guid ReadGuid(string prompt)
         {
             Guid result;

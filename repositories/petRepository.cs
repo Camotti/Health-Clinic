@@ -1,46 +1,47 @@
 using healthclinic.Interfaces;
 using healthclinic.Data;
 using healthclinic.models;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace healthclinic.repositories
 {
-    public class petRepository : IPetRepository
+    public class PetRepository : IPetRepository
     {
-        public void Add(Pet pet) // añadir
+        public void Add(Pet entity)
         {
-            Database.Pets.Add(pet);
+            Database.Pets.Add(entity);
         }
 
-        public void Delete(Guid id) //eliminar
+        public void Delete(Guid id)
         {
-            var pet = Database.Pets.FirstOrDefault(pet => pet.Id == id);
+            var pet = Database.Pets.FirstOrDefault(p => p.Id == id);
             if (pet != null)
             {
                 Database.Pets.Remove(pet);
             }
         }
 
-        public List<Pet> GetAll() //listar
+        public List<Pet> GetAll()
         {
-            return Database.Pets;
+            return Database.Pets.ToList();
         }
 
         public Pet? GetById(Guid id)
         {
-            return Database.Pets.FirstOrDefault(patient => patient.Id == id);
+            return Database.Pets.FirstOrDefault(p => p.Id == id);
         }
 
         public void Update(Pet entity)
         {
-            var existing = Database.Pets.FirstOrDefault(pet => pet.Id == entity.Id);
-            if (existing != null)
+            var existingPet = Database.Pets.FirstOrDefault(p => p.Id == entity.Id);
+            if (existingPet != null)
             {
-                existing.Name = entity.Name;
-                existing.Specie = entity.Specie;
-                existing.Age = entity.Age;   
+                existingPet.Name = entity.Name;
+                existingPet.Specie = entity.Specie;
+                existingPet.Age = entity.Age;
             }
-
         }
     }
 }
